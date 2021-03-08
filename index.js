@@ -20,7 +20,7 @@ client.on("message", async message => {
     const embed = new Discord.MessageEmbed()
     .setAuthor("Voici toute les commandes !", message.author.displayAvatarURL())
     .setColor("GREEN")
-    .setDescription("En cours....")
+    .setDescription("Test de la moula à grailler")
     message.channel.send(embed)
   }
 })
