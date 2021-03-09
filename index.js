@@ -1,10 +1,11 @@
 const Discord = require("discord.js")
+const moment = require("moment")
 const client = new Discord.Client()
 const prefix = "bat!"
 client.login(process.env.TOKEN)
 
 client.on("ready", async () =>{
-  const stat = [`${prefix}help`, `${prefix}shop`, `& chill`]
+  const stat = [`${prefix}help`, `${prefix}shop`, `& chill`, `vicer la moula aux ienclis`]
 
   setInterval (function() {
       const statues = stat[Math.floor(Math.random() * stat.length)]
@@ -19,9 +20,25 @@ client.on("message", async message => {
   if(message.content.startsWith(prefix + "help")) {
     const embed = new Discord.MessageEmbed()
     .setAuthor("Voici toute les commandes !", message.author.displayAvatarURL())
-    .setColor("GREEN")
-    .setDescription("Test de la moula à grailler")
+    .addField("Voir le shop :", `${prefix}shop`)
+    .addField("Pour payer :", `${prefix}pay`)
+    .addField("Autre commande", `${prefix}info`)
+    .setFooter(`${client.user.username} | Discord Bot`, message.guild.iconURL())
     message.channel.send(embed)
+  }
+})
+
+// Info commander
+client.on("message", async messagr => {
+  if(message.content.startsWith(prefix + "user")){
+    let mention = message.mentions.users.first() || message.author
+    const infoEmbed = new Discord.MessageEmbed()
+    .setAuthor("Voici les informations !", message.author.displayAvatarURL())
+    .addField("Identifiant :", mention.id)
+    .addField("Tag :", mention.tag)
+    .addField("Création", moment(mention.createdAt).format("MMM Do YY"))
+    .setThumbnail(mention.displayAvatarURL({size:64}))
+    .setFooter("informations | Commande", message.guild.iconURL())
   }
 })
 
