@@ -1,5 +1,4 @@
 const Discord = require("discord.js")
-const moment = require("moment")
 const client = new Discord.Client()
 const prefix = "bat!"
 client.login(process.env.TOKEN)
@@ -36,7 +35,6 @@ client.on("message", async messagr => {
     .setAuthor("Voici les informations !", message.author.displayAvatarURL())
     .addField("Identifiant :", mention.id)
     .addField("Tag :", mention.tag)
-    .addField("Création", moment(mention.createdAt).format("MMM Do YY"))
     .setThumbnail(mention.displayAvatarURL({size:64}))
     .setFooter("informations | Commande", message.guild.iconURL())
   }
